@@ -1,10 +1,7 @@
 FROM ajones17/frr:latest
 
 # Install updates
-RUN apk update && apk upgrade && apk add --no-cache python3 tcpdump net-snmp-tools iperf3-dev && \
-	apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python && \
-	python3 -m ensurepip && \
-	pip3 install --no-cache --upgrade pip setuptools
+
 # Move to /etc/frr
 RUN rm -rf /etc/frr && mkdir -p /etc/frr
 WORKDIR /etc/frr
