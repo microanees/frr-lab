@@ -1,0 +1,16 @@
+version: '3'
+services:
+  ceos-1:
+    hostname: CEOS-1
+    image: "ceos:4.25.6M"
+    command: /sbin/init
+    privileged: true
+    environment:
+      container: docker
+      CEOS: 1
+      EOS_PLATFORM: ceoslab
+      SKIP_ZEROTOUCH_BARRIER_IN_SYSDBINIT: 1
+      ETBA: 1
+      INTFTYPE: eth
+    networks:
+      bridge:
