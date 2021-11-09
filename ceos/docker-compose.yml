@@ -4,7 +4,7 @@ version: "3"
 services:
   ceos-2:
     hostname: ceos-2
-    image: "ceos:4.25.6M"
+    image: "microanees/ceos:4.25.6M"
     privileged: true
     environment:
       CEOS: 1
