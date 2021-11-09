@@ -21,3 +21,9 @@ services:
       - "systemd.setenv=CEOS=1"
       - "systemd.setenv=EOS_PLATFORM=ceoslab"
       - "systemd.setenv=container=docker"
+    networks:
+      default:
+      net1:
+
+networks:
+  net1:
