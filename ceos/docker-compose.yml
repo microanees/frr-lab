@@ -6,6 +6,8 @@ services:
     hostname: ceos-2
     image: "microanees/ceos:4.25.6M"
     privileged: true
+    ports:
+      - "179:179"
     environment:
       CEOS: 1
       INTFTYPE: eth
