@@ -1,0 +1,26 @@
+version: '3'
+services:
+
+  frr:
+    image: ajones17/frr:latest
+    container_name: frr
+    hostname: route_server
+    expose:
+      - "22"
+      - "23"
+    volumes:
+      - "/home/admin/frr-lab/configs:/etc/frr/"
+      - "/home/admin/frr-lab/log:/var/log/frr/"
+    entrypoint: ["/sbin/tini", "--", "/usr/lib/frr/docker-start", "/usr/bin/vtysh"]
+    networks:
+      routed:
+
+networks:
+   routed:
+     driver: bridge
+     driver_opts:
+       com.docker.network.bridge.enable_ip_masquerade: 'false'
+     ipam:
+       driver: default
+       config:
+         - subnet: 192.168.101.0/24
