@@ -1,0 +1,18 @@
+name: 4-node
+topology:
+  kinds:
+    ceos:
+      image: "microanees/ceos:4.25.6M"
+  nodes:
+    tor1:
+      kind: ceos
+    rif1:
+      kind: ceos
+    dif1:
+      kind: ceos
+    cif1:
+      kind: ceos
+  links:
+    - endpoints: ["tor1:eth2", "rif1:eth1"]
+    - endpoints: ["rif1:eth2", "dif1:eth1"]
+    - endpoints: ["dif1:eth2", "cif1:eth1"]
