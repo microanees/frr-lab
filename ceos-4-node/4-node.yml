@@ -6,12 +6,16 @@ topology:
   nodes:
     node1:
       kind: ceos
+      startup-config: configs/node1.txt
     node2:
       kind: ceos
+      startup-config: configs/node2.txt
     node3:
       kind: ceos
+      startup-config: configs/node3.txt
     node4:
       kind: ceos
+      startup-config: configs/node4.txt
   links:
     - endpoints: ["node1:eth2", "node2:eth1"]
     - endpoints: ["node2:eth2", "node3:eth1"]
