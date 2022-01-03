@@ -6,8 +6,8 @@ topology:
     linux:
       image: "microanees/exabgp:4.2.16"
       binds:
-        - /etc/exabgp:/etc/exabgp
-        - /etc/network/interfaces:/etc/network/interfaces
+        - etc/exabgp:/etc/exabgp
+        - etc/network/interfaces:/etc/network/interfaces
   nodes:
     node1:
       kind: ceos
