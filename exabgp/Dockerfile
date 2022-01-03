@@ -1,24 +1,27 @@
+FROM debian:stretch
 
-# how to build and run exabgp using docker (using the local copy)
+RUN apt-get update && apt-get install -y \
+      build-essential \
+      zlib1g-dev \
+      libncurses5-dev \
+      libgdbm-dev \
+      libnss3-dev \
+      libssl-dev \
+      libsqlite3-dev \
+      libffi-dev \
+      libreadline6-dev \
+      libyaml-dev \
+      libbz2-dev \
+      curl \
+      openssh-client \
+      tar
 
-# docker build -t exabgp ./
-# docker run -it exabgp exabgp
+RUN curl -O https://www.python.org/ftp/python/3.8.2/Python-3.8.2.tar.xz
+RUN tar -xf Python-3.8.2.tar.xz
+RUN cd Python-3.8.2 && ./configure --enable-optimizations && make -j 4 && make altinstall
 
-FROM python:3-slim-buster
+RUN pip3.8 install --upgrade pip && \
+    pip3.8 install --no-cache-dir urllib3 paramiko PyYAML && \
+    pip3.8 install --no-cache-dir requests && \
+    pip3.8 install exabgp
 
-ARG version="master"
-ENV PYTHONPATH "/tmp/exabgp/src"
-
-RUN apt update \
-    && apt -y dist-upgrade \
-    && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
-
-ADD . /tmp/exabgp
-WORKDIR /tmp/exabgp
-RUN ln -s src/exabgp exabgp
-
-# RUN python3 -c "import exabgp.application.main; exabgp.application.main.main()"
-RUN echo Building exabgp ${version}
-RUN pip3 install --upgrade pip setuptools wheel
-RUN pip3 install .
-WORKDIR /usr/local/etc/exabgp

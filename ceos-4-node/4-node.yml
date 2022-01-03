@@ -3,6 +3,8 @@ topology:
   kinds:
     ceos:
       image: "microanees/ceos:4.25.6M"
+    exabgp:
+      image: "microanees/exabgp:4.2.16"
   nodes:
     node1:
       kind: ceos
@@ -16,6 +18,8 @@ topology:
     node4:
       kind: ceos
       startup-config: configs/node4.txt
+    host1:
+      kind: exabgp
   links:
     - endpoints: ["node1:eth2", "node2:eth1"]
     - endpoints: ["node2:eth2", "node3:eth1"]
