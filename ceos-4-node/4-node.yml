@@ -4,10 +4,9 @@ topology:
     ceos:
       image: "microanees/ceos:4.25.6M"
     linux:
-      image: "microanees/exabgp:4.2.16"
+      image: "microanees/exabgp:4.2.16a"
       binds:
         - etc/exabgp:/etc/exabgp
-        - etc/network/interfaces:/etc/network/interfaces
   nodes:
     node1:
       kind: ceos
