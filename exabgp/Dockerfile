@@ -23,5 +23,7 @@ RUN cd Python-3.8.2 && ./configure --enable-optimizations && make -j 4 && make a
 RUN pip3.8 install --upgrade pip && \
     pip3.8 install --no-cache-dir urllib3 paramiko PyYAML && \
     pip3.8 install --no-cache-dir requests && \
-    pip3.8 install exabgp
+    pip3.8 install exabgp && \
+    pip3.8 install exabgpctl
 
+RUN mkdir -p /etc/exabgp
